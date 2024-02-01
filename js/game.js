@@ -17,7 +17,7 @@ var green = "#00ff40";
 var black = "#000000";
 
 
-function inicializa(){
+function initialize(){
     canvas = document.getElementById("screen");
     ctx = canvas.getContext("2D");
 
@@ -27,5 +27,9 @@ function inicializa(){
     tileX = Math.floor(canvasX/rows);
     tileY = Math.floor(canvasY/columns);
 
-    console.log("X: "+tileX);
+    setInterval(function(){main();},1000/fps )
+}
+
+function main(){
+    console.log("frame");
 }
