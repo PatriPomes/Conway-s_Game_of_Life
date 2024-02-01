@@ -16,6 +16,15 @@ var columns = 100;
 var green = "#00ff40";
 var black = "#000000";
 
+function createArray2D(rows,columns){
+    var obj = new Array(rows);
+    for (cont = 0; cont < rows; cont++){
+        obj[cont] = new Array(columns);
+    }
+    return obj;
+
+}
+
 
 function initialize(){
     canvas = document.getElementById("screen");
@@ -26,6 +35,7 @@ function initialize(){
 
     tileX = Math.floor(canvasX/rows);
     tileY = Math.floor(canvasY/columns);
+
 
     setInterval(function(){main();},1000/fps )
 }
