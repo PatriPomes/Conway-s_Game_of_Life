@@ -36,6 +36,8 @@ function initialize(){
     tileX = Math.floor(canvasX/rows);
     tileY = Math.floor(canvasY/columns);
 
+    gameBoard = createArray2D(rows,columns);
+
 
     setInterval(function(){main();},1000/fps )
 }
