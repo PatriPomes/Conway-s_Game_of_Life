@@ -23,4 +23,9 @@ function inicializa(){
 
     canvas.width = canvasX;
     canvas.height = canvasY;
+
+    tileX = Math.floor(canvasX/rows);
+    tileY = Math.floor(canvasY/columns);
+
+    console.log("X: "+tileX);
 }
