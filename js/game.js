@@ -25,6 +25,35 @@ function createArray2D(rows,columns){
 
 }
 
+var agent = function(x, y, status){
+    this.x = x;
+    this.y = y;
+    this.status = status; //live or dead
+    this.statusNext = this.status; // status next cicle
+    
+    this.neighbors = [];
+
+    this.addNeighbors = function(){
+        var xNeighbor;
+        var yNeighbor;
+
+        for(i=-1; i<2; i++){
+            for(j=-1; j<2; j++){
+                xNeighbor = (this.x + j + columns) % columns;
+                yNeighbor = (this.y + i + rows) % rows;
+
+                if(i!=0 || j!=0){ //pendiente cambiar esto por eleccion usuario para personalizar el juego a demanda
+                    this.neighbors.push(gameBoard[xNeighbor][yNeighbor])
+                }
+
+            }
+
+        }
+
+    }
+}
+
+
 
 function initialize(){
     canvas = document.getElementById("screen");
