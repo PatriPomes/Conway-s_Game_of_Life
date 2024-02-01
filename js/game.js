@@ -42,6 +42,12 @@ function initialize(){
     setInterval(function(){main();},1000/fps )
 }
 
+function deleteCanvas(){
+    canvas.width = canvas.width;
+    canvas.height = canvas.height; 
+}
+
 function main(){
     console.log("frame");
+    deleteCanvas();
 }
