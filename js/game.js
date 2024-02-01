@@ -13,10 +13,14 @@ var gameBoard;
 var rows = 100;
 var columns = 100;
 
-var white = "#FFFFFF";
+var green = "#00ff40";
 var black = "#000000";
 
 
 function inicializa(){
-    console.log('Carga');
+    canvas = document.getElementById("screen");
+    ctx = canvas.getContext("2D");
+
+    canvas.width = canvasX;
+    canvas.height = canvasY;
 }
