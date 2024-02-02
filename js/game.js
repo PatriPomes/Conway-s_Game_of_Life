@@ -21,7 +21,6 @@ function createArray2D(rows,columns){
     var obj = Array.from({length: rows}, () => Array(columns));
     return obj;
 }
-
 class Agent {
 
     constructor(x, y, status) {
