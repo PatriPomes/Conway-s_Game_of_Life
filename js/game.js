@@ -17,11 +17,15 @@ var green = "#00ff40";
 var black = "#000000";
 
 function createArray2D(rows,columns){
-    var obj = new Array(rows);
-    for (cont = 0; cont < rows; cont++){
-        obj[cont] = new Array(columns);
-    }
+    
+    var obj = Array.from({length: rows}, () => Array(columns));
     return obj;
+    
+    // var obj = new Array(rows);
+    // for (cont = 0; cont < rows; cont++){
+    //     obj[cont] = new Array(columns);
+    // }
+    // return obj;
 
 }
 
