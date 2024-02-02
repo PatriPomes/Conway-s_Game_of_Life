@@ -67,7 +67,7 @@ var Agent = function(x, y, status){
         var addition = 0;
 
         for(i=0; i<this.neighbors.length; i++){
-            addition += neighbors[i].status;
+            addition += this.neighbors[i].status;
         }
         this.nextStatus = this.status;
 
