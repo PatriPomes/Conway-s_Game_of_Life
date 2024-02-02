@@ -29,7 +29,7 @@ var Agent = function(x, y, status){
     this.x = x;
     this.y = y;
     this.status = status; //live or dead
-    this.statusNext = this.status; // status next cicle
+    this.nextStatus = this.status; // status next cicle
     
     this.neighbors = [];
 
@@ -69,20 +69,20 @@ var Agent = function(x, y, status){
         for(i=0; i<this.neighbors.length; i++){
             addition += neighbors[i].status;
         }
-        this.statusNext = this.status;
+        this.nextStatus = this.status;
 
         //DEAD: menos de 2 o mas de 3 vecinos
         if(addition<2 || addition>3){
-            this.statusNext = 0; 
+            this.nextStatus = 0; 
         }
         //LIVE nd RENDERING : tiene exactamente 3 vecinos
         if(addition==3){
-            this.statusNext = 1;
+            this.nextStatus= 1;
         }
     }
 
     this.mutation = function(){
-        this.status = this.statusNext;
+        this.status = this.nextStatus;
     }
 }
 
@@ -121,11 +121,18 @@ function initialize(){
 }
 
 function drawGameBoard(obj){
+
     for (y=0; y<rows; y++){
         for(x=0; x<columns; x++){
             obj[x][y].draw();
         }
     }
+    for (y=0; y<rows; y++){
+        for(x=0; x<columns; x++){
+            obj[x][y].newLoop();
+        }
+    }
+
 }
 
 
