@@ -83,7 +83,7 @@ function gameBoardInitialize(obj){
 
 function initialize(){
     canvas = document.getElementById("screen");
-    ctx = canvas.getContext("2D");
+    ctx = canvas.getContext("2d");
 
     canvas.width = canvasX;
     canvas.height = canvasY;
@@ -99,12 +99,21 @@ function initialize(){
     setInterval(function(){main();},1000/fps )
 }
 
+function drawGameBoard(obj){
+    for (y=0; y<rows; y++){
+        for(x=0; x<columns; x++){
+            obj[x][y].draw();
+        }
+    }
+}
+
+
 function deleteCanvas(){
     canvas.width = canvas.width;
     canvas.height = canvas.height; 
 }
 
 function main(){
-    console.log("frame");
     deleteCanvas();
+    drawGameBoard(gameBoard);
 }
