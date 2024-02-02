@@ -28,67 +28,116 @@ function createArray2D(rows,columns){
     // return obj;
 
 }
+class Agent {
+    constructor(x, y, status) {
+        this.x = x;
+        this.y = y;
+        this.status = status; //live or dead
+        this.nextStatus = this.status; // status next cicle
+        this.neighbors = [];
+    }
 
-var Agent = function(x, y, status){
-    this.x = x;
-    this.y = y;
-    this.status = status; //live or dead
-    this.nextStatus = this.status; // status next cicle
-    
-    this.neighbors = [];
-
-    this.addNeighbors = function(){
+    addNeighbors() {
         var xNeighbor;
         var yNeighbor;
 
-        for(i=-1; i<2; i++){
-            for(j=-1; j<2; j++){
+        for(var i=-1; i<2; i++){
+            for(var j=-1; j<2; j++){
                 xNeighbor = (this.x + j + columns) % columns;
                 yNeighbor = (this.y + i + rows) % rows;
 
-                if(i!=0 || j!=0){ //pendiente cambiar esto por eleccion usuario para personalizar el juego a demanda
+                if(i!==0 || j!==0){ 
                     this.neighbors.push(gameBoard[xNeighbor][yNeighbor])
                 }
             }
         }
     }
 
-    this.draw = function(){
-
-        var color;
-
-        if(this.status==1){
-            color=green;
-        }else{
-            color=black;
-        }
+    draw() {
+        var color = this.status === 1 ? green : black;
         ctx.fillStyle = color;
         ctx.fillRect(this.x*tileX, this.y*tileY, tileX, tileY);
     }
 
-    this.newLoop = function(){
-        
-        var addition = 0;
-
-        for(i=0; i<this.neighbors.length; i++){
-            addition += this.neighbors[i].status;
-        }
+    newLoop() {
+        var addition = this.neighbors.reduce((acc, neighbor) => acc + neighbor.status, 0);
         this.nextStatus = this.status;
 
-        //DEAD: menos de 2 o mas de 3 vecinos
+        //DEAD: less than 2 or more than 3 neighbors
         if(addition<2 || addition>3){
             this.nextStatus = 0; 
         }
-        //LIVE nd RENDERING : tiene exactamente 3 vecinos
-        if(addition==3){
+        //LIVE and RENDERING : has exactly 3 neighbors
+        if(addition===3){
             this.nextStatus= 1;
         }
     }
 
-    this.mutation = function(){
+    mutation() {
         this.status = this.nextStatus;
     }
 }
+
+// var Agent = function(x, y, status){
+//     this.x = x;
+//     this.y = y;
+//     this.status = status; //live or dead
+//     this.nextStatus = this.status; // status next cicle
+    
+//     this.neighbors = [];
+
+//     this.addNeighbors = function(){
+//         var xNeighbor;
+//         var yNeighbor;
+
+//         for(i=-1; i<2; i++){
+//             for(j=-1; j<2; j++){
+//                 xNeighbor = (this.x + j + columns) % columns;
+//                 yNeighbor = (this.y + i + rows) % rows;
+
+//                 if(i!=0 || j!=0){ //pendiente cambiar esto por eleccion usuario para personalizar el juego a demanda
+//                     this.neighbors.push(gameBoard[xNeighbor][yNeighbor])
+//                 }
+//             }
+//         }
+//     }
+
+//     this.draw = function(){
+
+//         var color;
+
+//         if(this.status==1){
+//             color=green;
+//         }else{
+//             color=black;
+//         }
+//         ctx.fillStyle = color;
+//         ctx.fillRect(this.x*tileX, this.y*tileY, tileX, tileY);
+//     }
+
+//     this.newLoop = function(){
+        
+//         var addition = 0;
+
+//         for(i=0; i<this.neighbors.length; i++){
+//             addition += this.neighbors[i].status;
+//         }
+//         this.nextStatus = this.status;
+
+//         //DEAD: menos de 2 o mas de 3 vecinos
+//         if(addition<2 || addition>3){
+//             this.nextStatus = 0; 
+//         }
+//         //LIVE nd RENDERING : tiene exactamente 3 vecinos
+//         if(addition==3){
+//             this.nextStatus= 1;
+//         }
+//     }
+
+//     this.mutation = function(){
+//         this.status = this.nextStatus;
+//     }
+// }
 
 function gameBoardInitialize(obj){
 
