@@ -45,11 +45,21 @@ var Agent = function(x, y, status){
                 if(i!=0 || j!=0){ //pendiente cambiar esto por eleccion usuario para personalizar el juego a demanda
                     this.neighbors.push(gameBoard[xNeighbor][yNeighbor])
                 }
-
             }
-
         }
+    }
 
+    this.draw = function(){
+
+        var color;
+
+        if(this.status==1){
+            color=green;
+        }else{
+            color=black;
+        }
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x*tileX, this.y*tileY, tileX, tileY);
     }
 }
 
