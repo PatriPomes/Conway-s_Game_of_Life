@@ -29,6 +29,7 @@ function createArray2D(rows,columns){
 
 }
 class Agent {
+
     constructor(x, y, status) {
         this.x = x;
         this.y = y;
@@ -141,19 +142,30 @@ class Agent {
 
 function gameBoardInitialize(obj){
 
-    var status;
-
-    for (y=0; y<rows; y++){
-        for(x=0; x<columns; x++){
-            status = Math.floor(Math.random()*2); //posible modificacion para añadir coordenadas a gusto del usuario?
+    for (let y=0; y<rows; y++){
+        for(let x=0; x<columns; x++){
+            const status = Math.floor(Math.random()*2); 
             obj[x][y] = new Agent(x, y, status);
         }
     }
-    for (y=0; y<rows; y++){
-        for(x=0; x<columns; x++){
+    for (let y=0; y<rows; y++){
+        for(let x=0; x<columns; x++){
             obj[x][y].addNeighbors();
         }
     }
+    // var status;
+
+    // for (y=0; y<rows; y++){
+    //     for(x=0; x<columns; x++){
+    //         status = Math.floor(Math.random()*2); //posible modificacion para añadir coordenadas a gusto del usuario?
+    //         obj[x][y] = new Agent(x, y, status);
+    //     }
+    // }
+    // for (y=0; y<rows; y++){
+    //     for(x=0; x<columns; x++){
+    //         obj[x][y].addNeighbors();
+    //     }
+    // }
 }
 
 function initialize(){
