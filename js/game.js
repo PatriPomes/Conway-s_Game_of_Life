@@ -182,7 +182,7 @@ function initialize(){
     
     gameBoardInitialize(gameBoard);
 
-    setInterval(function(){main();},1000/fps )
+    setInterval(main,1000/fps )
 }
 
 function drawGameBoard(obj){
