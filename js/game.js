@@ -132,6 +132,11 @@ function drawGameBoard(obj){
             obj[x][y].newLoop();
         }
     }
+    for (y=0; y<rows; y++){
+        for(x=0; x<columns; x++){
+            obj[x][y].mutation();
+        }
+    }
 
 }
 
