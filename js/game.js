@@ -25,7 +25,7 @@ function createArray2D(rows,columns){
 
 }
 
-var agent = function(x, y, status){
+var Agent = function(x, y, status){
     this.x = x;
     this.y = y;
     this.status = status; //live or dead
@@ -53,6 +53,22 @@ var agent = function(x, y, status){
     }
 }
 
+function gameBoardInitialize(obj){
+
+    var status;
+
+    for (y=0; y<rows; y++){
+        for(x=0; x<columns; x++){
+            status = Math.floor(Math.random()*2); //posible modificacion para añadir coordenadas a gusto del usuario?
+            obj[x][y] = new Agent(x, y, status);
+        }
+    }
+    for (y=0; y<rows; y++){
+        for(x=0; x<columns; x++){
+            obj[x][y].addNeighbors();
+        }
+    }
+}
 
 
 function initialize(){
@@ -66,6 +82,8 @@ function initialize(){
     tileY = Math.floor(canvasY/columns);
 
     gameBoard = createArray2D(rows,columns);
+    
+    gameBoardInitialize(gameBoard);
 
 
     setInterval(function(){main();},1000/fps )
