@@ -61,6 +61,7 @@ var Agent = function(x, y, status){
         ctx.fillStyle = color;
         ctx.fillRect(this.x*tileX, this.y*tileY, tileX, tileY);
     }
+
     this.newLoop = function(){
         
         var addition = 0;
@@ -78,6 +79,10 @@ var Agent = function(x, y, status){
         if(addition==3){
             this.statusNext = 1;
         }
+    }
+
+    this.mutation = function(){
+        this.status = this.statusNext;
     }
 }
 
