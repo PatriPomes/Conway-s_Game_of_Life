@@ -61,6 +61,24 @@ var Agent = function(x, y, status){
         ctx.fillStyle = color;
         ctx.fillRect(this.x*tileX, this.y*tileY, tileX, tileY);
     }
+    this.newLoop = function(){
+        
+        var addition = 0;
+
+        for(i=0; i<this.neighbors.length; i++){
+            addition += neighbors[i].status;
+        }
+        this.statusNext = this.status;
+
+        //DEAD: menos de 2 o mas de 3 vecinos
+        if(addition<2 || addition>3){
+            this.statusNext = 0; 
+        }
+        //LIVE nd RENDERING : tiene exactamente 3 vecinos
+        if(addition==3){
+            this.statusNext = 1;
+        }
+    }
 }
 
 function gameBoardInitialize(obj){
@@ -80,7 +98,6 @@ function gameBoardInitialize(obj){
     }
 }
 
-
 function initialize(){
     canvas = document.getElementById("screen");
     ctx = canvas.getContext("2d");
@@ -94,7 +111,6 @@ function initialize(){
     gameBoard = createArray2D(rows,columns);
     
     gameBoardInitialize(gameBoard);
-
 
     setInterval(function(){main();},1000/fps )
 }
